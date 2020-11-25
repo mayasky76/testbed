@@ -1,44 +1,46 @@
 <template>
-  <div class="home">
-  <div  v-if="!Object.keys($root.shadowDB.Manuscript).length"  >
-  <h1>Title</h1>
-  <input v-model="manuscriptTitle"/>
-  <div>{{errortxt}}</div>
-    <button  @click="NewManuscript()">Start Writing</button>
-  </div>
-  <div v-else>
-    <input v-model="$root.shadowDB.Manuscript[Object.keys($root.shadowDB.Manuscript)[0]].title" @keyup="$root.UpdateRecord('Manuscript', $root.shadowDB.Manuscript[Object.keys($root.shadowDB.Manuscript)[0]].uuid, $root.shadowDB.Manuscript[Object.keys($root.shadowDB.Manuscript)[0]])"/>
-      <pre>
-        {{$root.shadowDB}}
-      </pre>
-
-  </div>
-  
-
+  <div>
+    <FilePanel/>
+    <FileInfo />
+    <NotesPanel />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-
+import FilePanel from "@/components/FilePanel"
+import NotesPanel from "@/components/NotesPanel"
+import FileInfo from "@/components/FileInfo"
 export default {
-  name: "Manuscript",
+  name: "Writer",
+  components:{
+    FilePanel,
+    FileInfo,
+    NotesPanel
+  },
   data(){
     return {
-        manuscriptTitle : null,
-        errortxt : null
+        manuscriptUUID : null
     }
   },
   methods:{
-    NewManuscript(){
-      if(this.manuscriptTitle){
-let newObj ={}
-newObj.title = this.manuscriptTitle
-           this.$root.AddRecord('Manuscript', newObj )
-      }else{
-        this.errortxt ="You need to enter a title"
-      }
+    updateDatabase(){
+     this.$root.UpdateRecord('Manuscript', this.manuscriptUUID, this.$root.shadowDB.Manuscript[this.manuscriptUUID])
+    }
+  },
+  beforeMount(){
+    if(!Object.keys(this.$root.shadowDB.Manuscript).length){
+      // No manuscript so create
+        let newObj ={}
+      newObj.uuid = this.$root.uuid.v1();
+      newObj.title ="New Project"
+      this.manuscriptUUID=newObj.uuid
+      this.$root.shadowDB.Manuscript[newObj.uuid]=newObj
+      this.$root.AddRecord('Manuscript', newObj )
+    }else{
+      this.manuscriptUUID=Object.keys(this.$root.shadowDB.Manuscript)[0]
     }
   }
 };
 </script>
+

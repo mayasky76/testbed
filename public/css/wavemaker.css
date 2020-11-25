@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Halant:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
 :root {
   
     --c0: #fafafa;
@@ -10,6 +12,27 @@
     --c7: #616161;
     --c8: #424242;
     --c9: #212121;
+
+    --c0: #EDE7F6;
+    --c1: #D1C4E9;
+    --c2: #B39DDB;
+    --c3: #9575CD;
+    --c4: #7E57C2;
+    --c5: #673AB7;
+    --c6: #5E35B1;
+    --c7: #512DA8;
+    --c8: #4527A0;
+    --c9: #311B92;
+
+    --c1: #cfd8dc;
+    --c2: #b0bec5;
+    --c3: #90a4ae;
+    --c4: #78909c;
+    --c5: #607d8b;
+    --c6: #546e7a;
+    --c7: #455a64;
+    --c8: #37474f;
+    --c9: #263238;
    
     --logo-top: var(--c2);
     --logo-bottom: var(--c7);
@@ -17,6 +40,8 @@
     --main-foreground: var(--c9);
     --interface-button-background: var(--c9);
     --interface-button-foreground: var(--c0);
+    --input-field-background: var(--c2);
+    --input-field-foreground: var(--c9);
     --interface-button-background-hover: var(--c7);
     --interface-button-foreground-hover: var(--c0);
     --interface-button-background-danger: #8c0000;
@@ -33,7 +58,7 @@
     --side-tool-panel-foreground: var(--c0);
     --system-font: "Quicksand", sans-serif;
     --manuscriptFont: "Halant";
-    --default-font-size: 14px;
+    --default-font-size: 40px;
     --manuscriptFont: "'Halant', serif";
     --manuscriptAlign: "left";
     --manuscriptFontSize: 1.3rem;
@@ -45,8 +70,8 @@
     /*
 Setting General Interface Variables
 */
-    --base-foreground-color: #fff;
-    --base-background-color: #222;
+    --base-foreground-color: var(--c0);
+    --base-background-color: var(--c9);
     --system-font: var(--custom-system-font: ), "Quicksand", sans-serif;
     --editor-background-color: var(--c3);
     --paper-background-color: var(--c0);
@@ -57,6 +82,14 @@ Setting General Interface Variables
     --sub-list-bg: var(--c7);
 }
 
+html{
+    box-sizing: border-box;
+    font-family: var(--system-font)
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+    transition: all 0.2s ease;
+  }
 ::-webkit-scrollbar-button {
     display: block;
     height: 0px;
@@ -82,4 +115,52 @@ Setting General Interface Variables
 
 .logo-bottom{
     fill: var(--logo-bottom) ;
+}
+.fab{
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=15, Direction=0, Color=#000000)";/*IE 8*/
+-moz-box-shadow: 0 0 15px -3px rgba(0,0,0,0.9);/*FF 3.5+*/
+-webkit-box-shadow: 0 0 15px -3px rgba(0,0,0,0.9);/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+box-shadow: 0 0 15px -3px rgba(0,0,0,0.9);/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+filter: progid:DXImageTransform.Microsoft.Shadow(Strength=15, Direction=135, Color=#000000); /*IE 5.5-7*/
+    width:40px;
+    height:40px;
+    border-radius:20px;
+    color: var(--interface-button-foreground);
+    background-color: var(--interface-button-background);
+    outline: none;;
+}
+.fab:focus,.fab:active,.fab:hover{
+    color: var(--interface-button-foreground-hover);
+    background-color: var(--interface-button-background-hover);
+}
+
+.settings_input{
+    width:100%;
+    padding:10px;
+    border: 0;
+    border-bottom: 3px solid var(--input-field-foreground);
+    color: var(--input-field-foreground);
+    background-color: var(--input-field-background);
+    font: var(--system-font);
+}
+
+.side-tool-panel{
+    position: absolute;
+    top:0px;
+    left:-300px;
+    bottom:0px;
+    width:300px;
+    background-color:var(--side-tool-panel-background);
+    color:var(--side-tool-panel-foreground);
+}
+
+.rhside-tool-panel{
+    position: absolute;
+    top:0px;
+    right:-300px;
+    bottom:0px;
+    width:300px;
+    background-color:var(--side-tool-panel-background);
+    color:var(--side-tool-panel-foreground);
+    z-index: 999999;
 }

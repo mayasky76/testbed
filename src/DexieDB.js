@@ -3,7 +3,7 @@ import 'dexie-observable';
 
 const db = new Dexie('testbed');
 db.version(1).stores({
-    Manuscript : `$$uuid,title, author, structure, lastupdated`,
+    Manuscript : `$$uuid,title, author, files, lastupdated`,
     Cards: `$$uuid,title,content,lastupdated`,
 });
 /* 
